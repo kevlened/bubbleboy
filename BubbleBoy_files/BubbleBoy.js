@@ -32,9 +32,16 @@ function init_blockdude(id) {
 	defineBlockDudeRight();
 	blockdudeLeft = context.createImageData(16, 16);
 	defineBlockDudeLeft();
-	currentLevel = 0;
+	currentLevel = getParameterByName('I_shouldnt_but_I_am') || 0;
 	win();
 	draw();
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function setPixel(data, x, y, r, g, b) {
