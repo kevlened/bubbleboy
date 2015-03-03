@@ -33,6 +33,7 @@ function init_blockdude(id) {
 	blockdudeLeft = context.createImageData(16, 16);
 	defineBlockDudeLeft();
 	currentLevel = getParameterByName('I_shouldnt_but_I_am') || 0;
+	JackMode = getParameterByName('JackMode') || false;
 	win();
 	draw();
 }
@@ -407,18 +408,30 @@ function climbBlock() {
 	if (blockdude.getDirection()) {
 		if (level[blockdude.getY()][blockdude.getX() - 1] != 0) {
 			if (level[blockdude.getY() + 1][blockdude.getX() - 1] == 0) {
-				blockdude.moveUp();
-			} else
-			if (level[blockdude.getY() + 1][blockdude.getX() - 1] == 3) {
+				blockdude.moveUp(1);
+			}
+			else if(level[blockdude.getY() + 2][blockdude.getX() - 1] == 0) {
+				blockdude.moveUp(2);
+			}
+			else if (level[blockdude.getY() + 1][blockdude.getX() - 1] == 3) {
+				win();
+			}
+			else if (JackMode && level[blockdude.getY() + 2][blockdude.getX() - 1] == 3) {
 				win();
 			}
 		}
 	} else {
 		if (level[blockdude.getY()][blockdude.getX() + 1] != 0) {
 			if (level[blockdude.getY() + 1][blockdude.getX() + 1] == 0) {
-				blockdude.moveUp();
-			} else
-			if (level[blockdude.getY() + 1][blockdude.getX() + 1] == 3) {
+				blockdude.moveUp(1);
+			}
+			else if (level[blockdude.getY() + 2][blockdude.getX() + 1] == 0) {
+				blockdude.moveUp(2);
+			}
+			else if (level[blockdude.getY() + 1][blockdude.getX() + 1] == 3) {
+				win();
+			}
+			else if (JackMode && level[blockdude.getY() + 2][blockdude.getX() - 1] == 3) {
 				win();
 			}
 		}
@@ -733,8 +746,8 @@ var BlockDude = function(x, y) {
 	self.lookRight = function() {
 		self.direction = false;
 	}
-	self.moveUp = function() {
-		self.y++;
+	self.moveUp = function(height) {
+		self.y = self.y + height;
 		if (self.direction) {
 			self.x--;
 		} else {
