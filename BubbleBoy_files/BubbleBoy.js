@@ -410,7 +410,7 @@ function climbBlock() {
 			if (level[blockdude.getY() + 1][blockdude.getX() - 1] == 0) {
 				blockdude.moveUp(1);
 			}
-			else if(level[blockdude.getY() + 2][blockdude.getX() - 1] == 0) {
+			else if(JackMode && level[blockdude.getY() + 2][blockdude.getX() - 1] == 0) {
 				blockdude.moveUp(2);
 			}
 			else if (level[blockdude.getY() + 1][blockdude.getX() - 1] == 3) {
@@ -425,7 +425,7 @@ function climbBlock() {
 			if (level[blockdude.getY() + 1][blockdude.getX() + 1] == 0) {
 				blockdude.moveUp(1);
 			}
-			else if (level[blockdude.getY() + 2][blockdude.getX() + 1] == 0) {
+			else if (JackMode && level[blockdude.getY() + 2][blockdude.getX() + 1] == 0) {
 				blockdude.moveUp(2);
 			}
 			else if (level[blockdude.getY() + 1][blockdude.getX() + 1] == 3) {
